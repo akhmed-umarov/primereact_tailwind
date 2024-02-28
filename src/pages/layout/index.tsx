@@ -1,11 +1,13 @@
+import { Outlet } from "react-router-dom";
 import Header from "@/widgets/header";
-import React from "react";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
   return (
     <div>
       <Header />
-      {children}
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };
