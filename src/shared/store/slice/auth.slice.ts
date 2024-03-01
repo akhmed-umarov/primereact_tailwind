@@ -1,9 +1,9 @@
 // import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import axios from "axios";
-// import { API_URL } from "@/http";
-// import AuthService from "@/services/auth.service";
-// import type { AuthResponse } from "@/types/AuthResponce";
-// import type { IUser } from "@/types/ICommentUser";
+// // import { API_URL } from "@/http";
+// // import AuthService from "@/services/auth.service";
+// // import type { AuthResponse } from "@/types/AuthResponce";
+// // import type { IUser } from "@/types/ICommentUser";
 
 // const initialState = {
 //   user: {} as IUser,

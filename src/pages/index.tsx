@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./error404";
-import AboutPage from "./about";
-import HomePage from "./home";
+import ReactPage from "./new_react";
+import SagaPage from "./saga";
+import ThunkPage from "./thunk";
 import Layout from "./layout";
 
 export const router = createBrowserRouter([
@@ -10,12 +11,16 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <HomePage />,
+        path: "/thunk",
+        element: <ThunkPage />,
       },
       {
-        path: "/about",
-        element: <AboutPage />,
+        path: "/newReact",
+        element: <ReactPage />,
+      },
+      {
+        path: "/saga",
+        element: <SagaPage />,
       },
     ],
   },

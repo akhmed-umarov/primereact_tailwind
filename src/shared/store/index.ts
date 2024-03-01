@@ -1,9 +1,10 @@
+import posts from '@/shared/store/slice/todosBaseFinal'
 import { configureStore } from "@reduxjs/toolkit";
-import modals from "./slice/modals.slice";
+// import modals from "./slice/modals.slice";
 // import auth from "./slice/auth.slice";
 
 const store = configureStore({
-  reducer: { modals },
+  reducer: { posts },
   devTools: process.env.NODE_ENV !== "production",
 });
 
