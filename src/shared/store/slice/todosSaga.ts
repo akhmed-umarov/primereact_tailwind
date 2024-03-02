@@ -1,67 +1,56 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-export interface ITodo {
-  name: string;
-  age: number;
-}
+import { type IPost } from "./todosBaseFinal";
 
-export interface IInterface {
+interface IInitialState {
   load: boolean;
   error: boolean;
-  todos: ITodo[];
+  posts: IPost[];
 }
 
-const initialState: IInterface = {
+const initialState: IInitialState = {
   load: false,
   error: false,
-  todos: [],
+  posts: [],
 };
 
-// const fetchTodos = createAsyncThunk<ITodo[], undefined, { rejectValue: string }>("todos/fetch" , async ()=>{
-//     try {
-//         const data = await fetch('https://jsonplaceholder.typicode.com/todos');
-//         const result = await data.json();
-//         console.log(result);
-//         return result
-//     } catch (err) {
-//         if (err instanceof Error) {
-//             throw new Error(err.name)
-//         }
-//     }
-// })
-
-const todosSlide = createSlice({
-  name: "todos",
+const postsSlice = createSlice({
+  name: "saga",
   initialState,
   reducers: {
-    // loadStart: (sta)
-    addTodo: (state, action: PayloadAction<ITodo>) => {
-      state.todos.push(action.payload);
+    getAllPosts: (state, action: PayloadAction<IPost[]>) => {
+      state.posts = action.payload;
     },
-    deleteTodo: (state, action: PayloadAction<string>) => {
-      state.todos = state.todos.filter((todo) => todo.name !== action.payload);
+    addPost: (state, action: PayloadAction<IPost>) => {
+      state.posts.push(action.payload);
     },
-    loadTodos: (state, action: PayloadAction<ITodo[]>) => {
-      state.todos = action.payload;
+    removePost: (state, action: PayloadAction<number>) => {
+      state.posts = state.posts.filter((post) => post.id !== action.payload);
+    },
+    loadingStart: (state) => {
+      state.load = true;
+    },
+    loadingEnd: (state) => {
+      state.load = false;
+    },
+    errorAdd: (state) => {
+      state.error = true;
+    },
+    errorRemove: (state) => {
+      state.error = false;
     },
   },
-  //  extraReducers: (builder)=>{
-  //     builder
-  //         .addCase(fetchTodos.pending, (state) => {
-  //             state.load = true
-  //         })
-  //         .addCase(fetchTodos.fulfilled, (state, action) => {
-  //             state.todos = action.payload
-  //             state.load = false;
-  //         })
-  //         .addCase(fetchTodos.rejected, (state) => {
-  //             state.error = true;
-  //             state.load = false;
-  //         })
-  //  }
 });
 
-const { reducer, actions } = todosSlide;
+const { reducer, actions } = postsSlice;
+
+export const {
+  getAllPosts,
+  addPost,
+  removePost,
+  loadingStart,
+  loadingEnd,
+  errorAdd,
+  errorRemove,
+} = actions;
 
 export default reducer;
-
-export const { addTodo, deleteTodo } = actions;

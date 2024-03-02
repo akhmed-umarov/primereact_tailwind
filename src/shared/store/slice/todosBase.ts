@@ -21,7 +21,6 @@ const fetchTodos = createAsyncThunk<ITodo[], undefined, { rejectValue: string }>
     try { 
         const data = await fetch('https://jsonplaceholder.typicode.com/todos');
         const result = await data.json();
-        console.log(result);
         return result
     } catch (err) { 
         if (err instanceof Error) { 
